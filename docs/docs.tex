@@ -1,0 +1,96 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry}
+
+\title{Program 1 - Perceptron}
+\author{Logan Grosz}
+\date{Last updated: \today}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+
+\begin{document}
+
+\maketitle
+
+\section{Description}
+
+Contained in this package are two items:
+
+\begin{itemize}
+    \item Pilot program, \texttt{prog1.py}    
+    \item \texttt{myml} module
+\end{itemize}
+
+I have opted to move \texttt{ML.py} to a full python module since we will be
+adding to it over the semester and I could already start to see it getting
+bloated when adding the plotting functions.
+
+\subsection{myml.util}
+
+This part of the module simply contains utility functions
+\texttt{plot\_decision\_regions} and \texttt{plot\_decision\_regions\_3d}. The
+former will show a scatter plot with the fitted line. The 3d variant will do the
+same but with a plane instead of a line.
+
+\subsection{myml.Perceptron}
+
+The perceptron follows the data fitting algorithm presented on Wikipedia
+closely. It initializes weights to 0. For each sample, it calculates the actual
+output,and then changes the weight to reflect the difference between this output
+and the desired output. This process repeats until the specified number of
+iterations is reached or there is an iteration error rate of 0. In order to
+preserve data, both the number of errors and weight at each step is recorded.
+These can be accessed through \textit{Perceptron}\texttt{.weights} and
+\textit{Perceptron}\texttt{.errors}.
+
+\textit{Perceptron}\texttt{.\_\_init\_\_} :: The initilizer takes 2 arguments: the
+first is the learning rate, a float between 0 and 1. The second is the max
+number of iterations. These values can be accessed again with
+\textit{Perceptron}\texttt{.rate} and \textit{Perceptron}\texttt{.niter}.
+
+\textit{Perceptron}\texttt{.fit} :: Takes arguments \texttt{X} (numpy array
+with shape (\textit{nSamples}, \textit{nFeatures})) and \texttt{d} (also a
+numpy array with shape (\textit{nSamples})). This function applies the steps
+described above and ``validates" the errors and weights arrays.
+
+\textit{Perceptron}\texttt{.net\_input} :: Returns the weighted values of some
+given input \texttt{X} (of type numpy array with shape
+(\textit{nSamples, nFeatures})) as a numpy array with shape (\textit{nSamples}).
+
+\textit{Perceptron}\texttt{.predict} :: Returns labels (-1 or 1) for a given
+\texttt{X} of type numpy array with shape (\textit{nSamples, nFeatures}) as a
+numpy array of shape (\textit{nSamples}).
+
+\texttt{Perceptron.f} :: a static method which returns the label given
+\texttt{w} (a numpy array of shape (\textit{nFeatures}+1)), and \texttt{x}, a
+sample with shape (\textit{nFeatures}). Note, they're not the same size but
+that's because \texttt{w[0]} acts as a bias.
+
+\section{Importing the Module}
+
+Due to the heavy reliance on numpy arrays, obviously the numpy module should
+be installed. This is also a design decision as numpy arrays are much faster
+than python lists.
+
+\texttt{import Perceptron from myml}
+
+\texttt{import myml.util as util}
+
+\section{Usage}
+
+All the functions described above can be used how you'd expect. For example
+usage please see \texttt{prog1.py} included.
+
+\section{Testing}
+
+Several manual tests were used in the Iris dataset. These tests included all
+combinations of flowers with varying features. Some converged and some did not.
+I also did some 3 feature learning, to test that functionality. Although there
+much more manual tests, two can be found in the example \texttt{prog.py}. The
+first is a 2 feature test which takes almost 800 iterations to converge while
+the second is a 3 feature test which converges quickly. Both of these use the
+first two flower species as they were the easiest to get to converge.
+
+\end{document}
+

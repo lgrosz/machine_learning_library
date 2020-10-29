@@ -7,12 +7,12 @@ import myml.util as util
 
 df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
 
-y = df.iloc[51:100, 2].values # versicolor, petal length
-x = df.iloc[51:100, 3].values # versicolor, petal width
+y = df.iloc[50:100, 2].values # versicolor, petal length
+# needs to be a matrix where there are n (number of data points) rows are independant variables
+X = np.array([[x] for x in df.iloc[50:100, 3].values]) # versicolor, petal length
 
-# learning rate + max epochs?
 lr = LinearRegressor(0.01, 1000)
-lr.fit(x, y)
+lr.fit(X, y)
 
-util.plot_linear_regression(x, y, lr)
+util.plot_linear_regression(X, y, lr)
 

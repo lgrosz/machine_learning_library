@@ -1,0 +1,23 @@
+Start the work of your term project!  You should have the perceptron part done.  We need  to start work on the other things.
+
+1) Create the Linear regression model.
+But we have no training data! 
+Yes you do! Take the Iris data, and use width (either sepal or petal) against the length.
+Another good dataset is the diamonds data-set (do a google search, multiple places have it available).  Use the price as the dependent variable, and any of the other real values (carat, depth, length, width and table) as your independent variable. 
+But, I do not know the expected results.
+Yes, you do!  You can plot the data, and add a regression line.  If you want to check if your weights are reasonable, just use the regression model in Excel.
+2) implement at least one of the hypothesis classes for the the low VC-dimension.
+
+Remember this is the first steps towards your Program Portfolio so make sure to work on the documentation as well.  It is also a way for you to show what your know, not to show how you can utilize an existing library, so if you use:
+
+* Numpy
+* Scipy
+* Scikit-learn
+* Theano
+* TensorFlow
+* Keras
+* PyTorch
+* Pandas
+* Matplotlib
+
+Use these for non-machine-learning algorithm like; importing data, cleaning data, visualizing data, re-labeling etc.  Not for the actual algorithm themselves.

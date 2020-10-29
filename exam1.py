@@ -7,8 +7,8 @@ import myml.util as util
 
 df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
 
-y = df.iloc[51:100, 3].values # versicolor, petal length
-x = df.iloc[51:100, 4].values # versicolor, petal width
+y = df.iloc[51:100, 2].values # versicolor, petal length
+x = df.iloc[51:100, 3].values # versicolor, petal width
 
 # learning rate + max epochs?
 lr = LinearRegressor(0.01, 1000)

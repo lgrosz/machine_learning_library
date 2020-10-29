@@ -46,5 +46,18 @@ class LinearRegressor:
             # calculate error for the new weights
             newy = np.array([np.dot(beta[i], x) for x in X])
             epsilon[i, :] = d - newy
-            print(epsilon[i])
+
+        self.w = beta
+        self.errors = epsilon
+
+    def predict(self, X):
+        """
+        Returns numpy array of predicted values
+
+        ;param numpy.ndarray X: an array of inputs
+        """
+        # get the final weights
+        w = self.w[self.w.shape[0]-1]
+        X = np.array([np.insert(x, 0, 1) for x in X])
+        return np.array([np.dot(w, x) for x in X])
 

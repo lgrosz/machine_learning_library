@@ -63,6 +63,11 @@ def plot_decision_regions_3d(X, y, classifier, resolution=0.02):
     plot.show()
 
 def plot_linear_regression(x, y, lr):
-    plot.scatter(x, y)
-    plot.show()
+    # 2d plot
+    if (x.shape[1] == 1):
+        plot.scatter(x, y)
+        plotX = np.array([[t] for t in np.linspace(np.min(x), np.max(x), 1000)])
+        ploty = lr.predict(plotX)
+        plot.plot(plotX, ploty, '-r')
+        plot.show()
 

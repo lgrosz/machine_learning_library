@@ -62,3 +62,5 @@ def plot_decision_regions_3d(X, y, classifier, resolution=0.02):
 
     plot.show()
 
+def plot_linear_regression(x, y, lr):
+    pass

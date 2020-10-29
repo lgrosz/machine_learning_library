@@ -31,7 +31,7 @@ class LinearRegressor:
             print(d)
 
             # calculate partial derivatives for each independant variable
-            derivatives = np.array([(-2 / (p-1) * sum(X[:, j] * (d - y))) for j in range(X.shape[1])])
+            derivatives = np.array([(-2 / p * sum(X[:, j] * (d - y))) for j in range(X.shape[1])])
 
             # calculate new weights
             beta[i, :] = beta[i, :] - np.array([self.rate * d for d in derivatives])

@@ -13,28 +13,26 @@ class LinearRegressor:
         n = d.size
 
         # number of regressors/independant variables
-        p = X[0].size
+        p = X.shape[1]
 
         # need beta, the weights, for each epoch
         beta = np.zeros((self.epochs, p))
         # need epsilon, the errors, for each epoch
         epsilon = np.zeros((self.epochs, n))
 
-        # we will use a gradient descent algorithm to
-        # minimize the cost
+        # gradient descent minimization algorithms
         for i in range(self.epochs):
             # start with the previous weight
             if (i > 0):
                 beta[i, :] = beta[i-1, :]
 
-            y = np.dot(beta[i], X[i])
+            y = np.array([np.dot(beta[i], x) for x in X])
             print(y)
+            print(d)
 
             # calculate partial derivatives for each independant variable
-            derivatives = np.array([(-2 / p * sum(x_i * (d - y))) for x_i in X])
+            derivatives = np.array([(-2 / (p-1) * sum(X[:, j] * (d - y))) for j in range(X.shape[1])])
 
             # calculate new weights
             beta[i, :] = beta[i, :] - np.array([self.rate * d for d in derivatives])
-
-        print(beta)
 

@@ -28,12 +28,15 @@ bloated when adding the plotting functions.
 
 \subsection{myml.util}
 
-This part of the module simply contains utility functions
-\texttt{plot\_decision\_regions} and \texttt{plot\_decision\_regions\_3d}. The
-former will show a scatter plot with the fitted line. The 3d variant will do the
-same but with a plane instead of a line.
+\textit{plot\_decision\_regions} :: Will print a 2D scattery plot along with a
+line that separates two regions in accordance with the perceptron passed in.
+
+\textit{plot\_decision\_regions\_3d} :: Will print a 3D scattery plot along with a
+plane that separates two regions in accordance with the perceptron passed in.
 
 \subsection{myml.Perceptron}
+
+\subsubsection{Description}
 
 The perceptron follows the data fitting algorithm presented on Wikipedia
 closely. It initializes weights to 0. For each sample, it calculates the actual
@@ -43,6 +46,8 @@ iterations is reached or there is an iteration error rate of 0. In order to
 preserve data, both the number of errors and weight at each step is recorded.
 These can be accessed through \textit{Perceptron}\texttt{.weights} and
 \textit{Perceptron}\texttt{.errors}.
+
+\subsubsection{Methods}
 
 \textit{Perceptron}\texttt{.\_\_init\_\_} :: The initilizer takes 2 arguments: the
 first is the learning rate, a float between 0 and 1. The second is the max
@@ -67,30 +72,70 @@ numpy array of shape (\textit{nSamples}).
 sample with shape (\textit{nFeatures}). Note, they're not the same size but
 that's because \texttt{w[0]} acts as a bias.
 
+\subsection{myml.LinearRegressor}
+
+\subsubsection{Description}
+
+The linear regressor uses fits assumed linear data with a line using a gradient
+descent algorithm. It starts assuming $\Beta = [0, ..., 0]$ instead of random
+numbers. It then calulates partial derivatives of the error term $J$, for each
+independant variable in $X$. $J$ is defined as $\sum_{i=1}^{n}(y_i-(\mathbf{\Beta}\mathbf{X^T_i}))^2$.
+Using the partial derivatives and the error rate, a new $\Beta$ is determined for
+the next epoch. This is repeated until the given number of epochs.
+
+\subsubsection{Usage}
+
+\begin{verbatim}
+lr = LinearRegressor(rate, epochs)
+lr.fit(X, y)
+\end{verbatim}
+
+\texttt{X} is a numpy.ndarray of shape ($n$, $p$)
+
+\texttt{y} is a numpy.ndarray of shape ($n$)
+
+where $n$ is the number of samples and $p$ is the number of independant variables
+
+\subsubsection{Attributes}
+
+Note: Attributes are meant to be read-only. Modify them at your own risk. I have not chosen to enforce this since anyone can break it if they wanted anyways.
+
+\textit{LinearRegressor.rate} :: learning rate
+
+\textit{LinearRegressor.epochs} :: epochs
+
+\textit{LinearRegressor.w} :: matrix of values of $\Beta$. This is a numpy.ndarray of shape ($epochs$, $p$).
+
+\textit{LinearRegressor.errors} :: matrix of values of $\epsilon$. $\epsilon$ is the error between each predicted $y_i$ and its real value, $d_i$, such that $\epislon + y_i = d_i$
+
+\subsubsection{Methods}
+
+\textit{LinearRegressor.\_\_init\_\_(rate, epochs)} :: Simply sets the learning rate and attributes of a linear regressor so it's ready to be fitted.
+
+\textit{LinearRegressor.fit(X, y)} :: Takes $X$ (numpy.ndarray of shape ($n$, $p$)) and $y$ (numpy.ndarray of shape ($n$)). $n$ is the number of samples while $p$ is the number of independant variables.
+
+\textit{LinearRegressor.predict(X)} :: takes a matrix of $\mathbf{x}$s, and spits out their predicted $\textbf{y}$s using the $\Beta$ of the last epoch. Note that the Linear Regressor must be fitted first!
+
 \section{Importing the Module}
 
 Due to the heavy reliance on numpy arrays, obviously the numpy module should
 be installed. This is also a design decision as numpy arrays are much faster
 than python lists.
 
-\texttt{import Perceptron from myml}
+\texttt{import <predictor> from myml}
 
 \texttt{import myml.util as util}
-
-\section{Usage}
-
-All the functions described above can be used how you'd expect. For example
-usage please see \texttt{prog1.py} included.
 
 \section{Testing}
 
 Several manual tests were used in the Iris dataset. These tests included all
 combinations of flowers with varying features. Some converged and some did not.
 I also did some 3 feature learning, to test that functionality. Although there
-much more manual tests, two can be found in the example \texttt{prog.py}. The
-first is a 2 feature test which takes almost 800 iterations to converge while
-the second is a 3 feature test which converges quickly. Both of these use the
-first two flower species as they were the easiest to get to converge.
+much more manual tests, two can be found in the example \texttt{prog.py} (commit
+tagged prog1). The first is a 2 feature test which takes almost 800 iterations
+to converge while the second is a 3 feature test which converges quickly. Both
+of these use the first two flower species as they were the easiest to get to
+converge.
 
 \end{document}
 

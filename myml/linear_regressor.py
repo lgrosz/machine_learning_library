@@ -54,6 +54,10 @@ class LinearRegressor:
         """
         Returns numpy array of predicted values
 
+        todo: it'd be cool if I can pass in a
+        number and it'd predict as if it was
+        that epoch
+
         ;param numpy.ndarray X: an array of inputs
         """
         # get the final weights

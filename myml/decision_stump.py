@@ -36,6 +36,8 @@ class DecisionStump:
                     # self.right = probabilities
 
         self.q = best_question
+        print(best_question.feature)
+        print(best_question.threshold)
         self.left = {}
         self.right = {}
 
@@ -79,20 +81,21 @@ def class_counts(X, y):
     return counts
 
 def partition(X, y, q):
-    print(X)
-    print(y)
-    leftX = np.array((0, X.shape[1]))
+    leftX = np.array([])
     lefty = np.array([])
-    rightX = np.array(0, X.shape[1])
+    rightX = np.array([])
     righty = np.array([])
 
     for i in range(X.size):
-        if q.match(X):
-            leftX = np.append(leftX, X[i], axis=0)
+        if q.match(X[i]):
+            leftX = np.append(leftX, X[i])
             lefty = np.append(lefty, y[i])
         else:
-            rightX = np.append(rightX, X[i], axis=0)
+            rightX = np.append(rightX, X[i])
             righty = np.append(righty, y[i])
+
+    leftX = np.reshape(leftX, (-1, X.shape[1]))
+    rightX = np.reshape(rightX, (-1, X.shape[1]))
 
     return leftX, lefty, rightX, righty
 

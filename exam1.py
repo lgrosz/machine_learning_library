@@ -18,7 +18,7 @@ df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris
 #util.plot_linear_regression(X, y, lr)
 
 y = df.iloc[50:150, 4].values # labels, versicolor-virginica
-X = np.array([[x] for x in df.iloc[50:150, 2].values]) # petal length only
+X = np.array([[x] for x in df.iloc[50:150, 3].values]) # petal width only
 
 ds = DecisionStump()
 ds.fit(X, y)

@@ -59,7 +59,7 @@ def is_numeric(val):
     return isinstance(val, int) or isinstance(val, float)
 
 def unique_vals(rows, feature):
-    return np.array(set([row[feature] for row in rows]))
+    return np.array(list(set([row[feature] for row in rows])))
 
 def gini(X, y):
     counts = class_counts(X, y)
@@ -71,7 +71,7 @@ def gini(X, y):
 
 def class_counts(X, y):
     counts = {}
-    for i in X.size:
+    for i in range(X.size):
         label = y[i]
         if label not in counts:
             counts[label] = 0
@@ -79,12 +79,14 @@ def class_counts(X, y):
     return counts
 
 def partition(X, y, q):
+    print(X)
+    print(y)
     leftX = np.array((0, X.shape[1]))
     lefty = np.array([])
     rightX = np.array(0, X.shape[1])
     righty = np.array([])
 
-    for i in X.size:
+    for i in range(X.size):
         if q.match(X):
             leftX = np.append(leftX, X[i], axis=0)
             lefty = np.append(lefty, y[i])

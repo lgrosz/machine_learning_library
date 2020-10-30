@@ -31,6 +31,7 @@ def plot_decision_regions(X, y, classifier, resolution=0.02):
                 label=cl)
     plot.show()
 
+# todo, make this a part of the above function
 def plot_decision_regions_3d(X, y, classifier, resolution=0.02):
     # setup marker generator and color map
     markers = ('s', 'x', 'o', '^', 'v')

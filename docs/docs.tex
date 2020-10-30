@@ -47,6 +47,8 @@ preserve data, both the number of errors and weight at each step is recorded.
 These can be accessed through \textit{Perceptron}\texttt{.weights} and
 \textit{Perceptron}\texttt{.errors}.
 
+\subsubsection{Attributes}
+
 \subsubsection{Methods}
 
 \textit{Perceptron}\texttt{.\_\_init\_\_} :: The initilizer takes 2 arguments: the
@@ -88,6 +90,7 @@ the next epoch. This is repeated until the given number of epochs.
 \begin{verbatim}
 lr = LinearRegressor(rate, epochs)
 lr.fit(X, y)
+lr.predict(Z)
 \end{verbatim}
 
 \texttt{X} is a numpy.ndarray of shape ($n$, $p$)
@@ -96,25 +99,25 @@ lr.fit(X, y)
 
 where $n$ is the number of samples and $p$ is the number of independant variables
 
-\subsubsection{Attributes}
+\subsubsection{Properties}
 
 Note: Attributes are meant to be read-only. Modify them at your own risk. I have not chosen to enforce this since anyone can break it if they wanted anyways.
 
-\textit{LinearRegressor.rate} :: learning rate
+\textit{LinearRegressor}\texttt{.rate} :: learning rate
 
-\textit{LinearRegressor.epochs} :: epochs
+\textit{LinearRegressor}\texttt{.epochs} :: epochs
 
-\textit{LinearRegressor.w} :: matrix of values of $\Beta$. This is a numpy.ndarray of shape ($epochs$, $p$).
+\textit{LinearRegressor}\texttt{.w} :: matrix of values of $\Beta$. This is a numpy.ndarray of shape ($epochs$, $p$).
 
-\textit{LinearRegressor.errors} :: matrix of values of $\epsilon$. $\epsilon$ is the error between each predicted $y_i$ and its real value, $d_i$, such that $\epislon + y_i = d_i$
+\textit{LinearRegressor}\texttt{.errors} :: matrix of values of $\epsilon$. $\epsilon$ is the error between each predicted $y_i$ and its real value, $d_i$, such that $\epislon + y_i = d_i$
 
 \subsubsection{Methods}
 
-\textit{LinearRegressor.\_\_init\_\_(rate, epochs)} :: Simply sets the learning rate and attributes of a linear regressor so it's ready to be fitted.
+\textit{LinearRegressor}\texttt{.\_\_init\_\_(rate, epochs)} :: Simply sets the learning rate and attributes of a linear regressor so it's ready to be fitted.
 
-\textit{LinearRegressor.fit(X, y)} :: Takes $X$ (numpy.ndarray of shape ($n$, $p$)) and $y$ (numpy.ndarray of shape ($n$)). $n$ is the number of samples while $p$ is the number of independant variables.
+\textit{LinearRegressor}\texttt{.fit(X, y)} :: Takes $X$ (numpy.ndarray of shape ($n$, $p$)) and $y$ (numpy.ndarray of shape ($n$)). $n$ is the number of samples while $p$ is the number of independant variables.
 
-\textit{LinearRegressor.predict(X)} :: takes a matrix of $\mathbf{x}$s, and spits out their predicted $\textbf{y}$s using the $\Beta$ of the last epoch. Note that the Linear Regressor must be fitted first!
+\textit{LinearRegressor}\texttt{.predict(X)} :: takes a matrix of $\mathbf{x}$s, and spits out their predicted $\textbf{y}$s using the $\Beta$ of the last epoch. Note that the Linear Regressor must be fitted first!
 
 \section{Importing the Module}
 

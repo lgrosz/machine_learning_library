@@ -1,0 +1,21 @@
+\contentsline {section}{\numberline {1}Usage}{2}%
+\contentsline {subsection}{\numberline {1.1}Installing the module from source}{2}%
+\contentsline {subsection}{\numberline {1.2}Usage}{2}%
+\contentsline {section}{\numberline {2}API Definitions}{2}%
+\contentsline {subsection}{\numberline {2.1}myml.util}{2}%
+\contentsline {subsection}{\numberline {2.2}myml.Perceptron}{2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Description}{2}%
+\contentsline {subsubsection}{\numberline {2.2.2}Usage}{2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Attributes}{3}%
+\contentsline {subsubsection}{\numberline {2.2.4}Methods}{3}%
+\contentsline {subsection}{\numberline {2.3}myml.LinearRegressor}{3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Description}{3}%
+\contentsline {subsubsection}{\numberline {2.3.2}Usage}{4}%
+\contentsline {subsubsection}{\numberline {2.3.3}Properties}{4}%
+\contentsline {subsubsection}{\numberline {2.3.4}Methods}{4}%
+\contentsline {subsection}{\numberline {2.4}Decision Stump}{4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Description}{4}%
+\contentsline {subsubsection}{\numberline {2.4.2}Usage}{5}%
+\contentsline {subsubsection}{\numberline {2.4.3}Properties}{5}%
+\contentsline {subsubsection}{\numberline {2.4.4}Methods}{5}%
+\contentsline {section}{\numberline {3}Testing}{5}%

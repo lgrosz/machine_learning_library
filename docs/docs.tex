@@ -79,10 +79,10 @@ that's because \texttt{w[0]} acts as a bias.
 \subsubsection{Description}
 
 The linear regressor uses fits assumed linear data with a line using a gradient
-descent algorithm. It starts assuming $\Beta = [0, ..., 0]$ instead of random
+descent algorithm. It starts assuming $\beta = [0, ..., 0]$ instead of random
 numbers. It then calulates partial derivatives of the error term $J$, for each
-independant variable in $X$. $J$ is defined as $\sum_{i=1}^{n}(y_i-(\mathbf{\Beta}\mathbf{X^T_i}))^2$.
-Using the partial derivatives and the error rate, a new $\Beta$ is determined for
+independant variable in $X$. $J$ is defined as $\sum_{i=1}^{n}(y_i-(\mathbf{\beta}\cdot\mathbf{X^T_i}))^2$.
+Using the partial derivatives and the error rate, a new $\beta$ is determined for
 the next epoch. This is repeated until the given number of epochs.
 
 \subsubsection{Usage}
@@ -107,9 +107,9 @@ Note: Attributes are meant to be read-only. Modify them at your own risk. I have
 
 \textit{LinearRegressor}\texttt{.epochs} :: epochs
 
-\textit{LinearRegressor}\texttt{.w} :: matrix of values of $\Beta$. This is a numpy.ndarray of shape ($epochs$, $p$).
+\textit{LinearRegressor}\texttt{.w} :: matrix of values of $\beta$. This is a numpy.ndarray of shape ($epochs$, $p$).
 
-\textit{LinearRegressor}\texttt{.errors} :: matrix of values of $\epsilon$. $\epsilon$ is the error between each predicted $y_i$ and its real value, $d_i$, such that $\epislon + y_i = d_i$
+\textit{LinearRegressor}\texttt{.errors} :: matrix of values of $\epsilon$. $\epsilon$ is the error between each predicted $y_i$ and its real value, $d_i$, such that $\epsilon + y_i = d_i$
 
 \subsubsection{Methods}
 
@@ -117,7 +117,7 @@ Note: Attributes are meant to be read-only. Modify them at your own risk. I have
 
 \textit{LinearRegressor}\texttt{.fit(X, y)} :: Takes $X$ (numpy.ndarray of shape ($n$, $p$)) and $y$ (numpy.ndarray of shape ($n$)). $n$ is the number of samples while $p$ is the number of independant variables.
 
-\textit{LinearRegressor}\texttt{.predict(X)} :: takes a matrix of $\mathbf{x}$s, and spits out their predicted $\textbf{y}$s using the $\Beta$ of the last epoch. Note that the Linear Regressor must be fitted first!
+\textit{LinearRegressor}\texttt{.predict(X)} :: takes a matrix of $\mathbf{x}$s, and spits out their predicted $\textbf{y}$s using the $\beta$ of the last epoch. Note that the Linear Regressor must be fitted first!
 
 \section{Importing the Module}
 

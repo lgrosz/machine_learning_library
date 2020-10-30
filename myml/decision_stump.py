@@ -32,14 +32,10 @@ class DecisionStump:
 
                 if (gain >= best_gain):
                     best_gain, best_question = gain, question
-                    # self.left = probabilities
-                    # self.right = probabilities
+                    self.left = probabilities(leftX, lefty)
+                    self.right = probabilities(rightX, righty)
 
         self.q = best_question
-        print(best_question.feature)
-        print(best_question.threshold)
-        self.left = {}
-        self.right = {}
 
     def predict(self, X):
         return np.array([self.left if self.q.match(x) else self.right for x in X])
@@ -67,18 +63,9 @@ def gini(X, y):
     counts = class_counts(X, y)
     impurity = 1
     for label in counts:
-        probability = counts[label] / float(X.size)
+        probability = counts[label] / float(X.shape[0])
         impurity -= probability**2
     return impurity
-
-def class_counts(X, y):
-    counts = {}
-    for i in range(X.size):
-        label = y[i]
-        if label not in counts:
-            counts[label] = 0
-        counts[label] += 1
-    return counts
 
 def partition(X, y, q):
     leftX = np.array([])
@@ -86,7 +73,7 @@ def partition(X, y, q):
     rightX = np.array([])
     righty = np.array([])
 
-    for i in range(X.size):
+    for i in range(X.shape[0]):
         if q.match(X[i]):
             leftX = np.append(leftX, X[i])
             lefty = np.append(lefty, y[i])
@@ -100,6 +87,20 @@ def partition(X, y, q):
     return leftX, lefty, rightX, righty
 
 def info_gain(leftX, lefty, rightX, righty, current_uncertainty):
-    p = float(leftX.size) / (rightX.size + leftX.size)
+    p = float(leftX.shape[0]) / (rightX.shape[0] + leftX.shape[0])
     return current_uncertainty - p * gini(leftX, lefty) - (1-p) * gini(rightX, righty)
 
+def class_counts(X, y):
+    counts = {}
+    for i in range(X.shape[0]):
+        label = y[i]
+        if label not in counts:
+            counts[label] = 0
+        counts[label] += 1
+    return counts
+
+def probabilities(X, y):
+    counts = class_counts(X, y)
+    for label in counts:
+        counts[label] = counts[label] / float(X.shape[0])
+    return counts

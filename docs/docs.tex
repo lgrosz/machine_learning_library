@@ -13,26 +13,36 @@
 
 \maketitle
 
-\section{Description}
+\section{Usage}
 
-Contained in this package are two items:
+\subsection{Installing the module from source}
 
-\begin{itemize}
-    \item Pilot program, \texttt{prog1.py}    
-    \item \texttt{myml} module
-\end{itemize}
+In the directory with \texttt{setup.py}
 
-I have opted to move \texttt{ML.py} to a full python module since we will be
-adding to it over the semester and I could already start to see it getting
-bloated when adding the plotting functions.
+\texttt{pip install .}
+
+\subsection{Usage}
+
+Then anywhere...
+
+\texttt{import <classifier> from myml}
+
+\texttt{import myml.util as util}
+
+For examples see \texttt{examples/}
+
+\section{API Definitions}
 
 \subsection{myml.util}
 
-\textit{plot\_decision\_regions} :: Will print a 2D scattery plot along with a
+\texttt{plot\_decision\_regions(X, y, classifier, resolution)} :: Will print a 2D scattery plot along with a
 line that separates two regions in accordance with the perceptron passed in.
 
-\textit{plot\_decision\_regions\_3d} :: Will print a 3D scattery plot along with a
+\texttt{plot\_decision\_regions\_3d(X, y, classifier, resolution)} :: Will print a 3D scattery plot along with a
 plane that separates two regions in accordance with the perceptron passed in.
+
+\texttt{plot\_linear\_regression} :: Will print a 2D scattery plot along with a
+plane that separates two regions in accordance with the perceptron passed in. For any higher dimensions it will not print. (For final portfolio, this will do a 3D plot as well)
 
 \subsection{myml.Perceptron}
 
@@ -47,7 +57,27 @@ preserve data, both the number of errors and weight at each step is recorded.
 These can be accessed through \textit{Perceptron}\texttt{.weights} and
 \textit{Perceptron}\texttt{.errors}.
 
+\subsubsection{Usage}
+
+\begin{verbatim}
+pn = Perceptron(rate, epochs)
+pn.fit(X, y)
+pn.predict(Z)
+\end{verbatim}
+
+\texttt{X} is a numpy.ndarray of shape ($samples$, $features$)
+
+\texttt{y} is a numpy.ndarray of shape ($samples$)
+
 \subsubsection{Attributes}
+
+\textit{Perceptron}\texttt{.rate} :: The learning rate of the classifier
+
+\textit{Perceptron}\texttt{.epochs} :: The number of epochs to run when fitting. These are not guaranteed to run if the classifier can be fit with no error at any point.
+
+\textit{Perceptron}\texttt{.errors} :: Errors at each epoch during fitting. This is a numpy.ndarray with shape ($epochs$, $features$).
+
+\textit{Perceptron}\texttt{.weights} :: Weights at each epoch during fitting. This is a numpy.ndarray with shape ($epochs$, $features$).
 
 \subsubsection{Methods}
 
@@ -119,16 +149,6 @@ Note: Attributes are meant to be read-only. Modify them at your own risk. I have
 
 \textit{LinearRegressor}\texttt{.predict(X)} :: takes a matrix of $\mathbf{x}$s, and spits out their predicted $\textbf{y}$s using the $\beta$ of the last epoch. Note that the Linear Regressor must be fitted first!
 
-\section{Importing the Module}
-
-Due to the heavy reliance on numpy arrays, obviously the numpy module should
-be installed. This is also a design decision as numpy arrays are much faster
-than python lists.
-
-\texttt{import <predictor> from myml}
-
-\texttt{import myml.util as util}
-
 \section{Testing}
 
 Several manual tests were used in the Iris dataset. These tests included all
@@ -139,6 +159,8 @@ tagged prog1). The first is a 2 feature test which takes almost 800 iterations
 to converge while the second is a 3 feature test which converges quickly. Both
 of these use the first two flower species as they were the easiest to get to
 converge.
+
+This needs to be fleshed out with runnable tests for the final portoflio using pytest.
 
 \end{document}
 

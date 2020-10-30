@@ -150,6 +150,57 @@ Note: Attributes are meant to be read-only. Modify them at your own risk. I have
 
 \textit{LinearRegressor}\texttt{.predict(X)} :: takes a matrix of $\mathbf{x}$s, and spits out their predicted $\textbf{y}$s using the $\beta$ of the last epoch. Note that the Linear Regressor must be fitted first!
 
+\subsection{Decision Stump}
+
+\subsubsection{Description}
+
+The decision stump is a decision tree which only has a depth of 1.
+It will take in some samples, each with $n$ features and a label.
+The classifier will determine which feature and value of said feature provides a threshold which gives the largest confidence gain is classifying the given samples.
+While the samples can have as many labels as wished for, if this is being used as a standalone classifier a binary labeling is best.
+
+The given dataset comes with an inherit impurity (measured by gini impurity).
+The classifier will go through every unique value for each feature given in $X$, and determine the feature and value that provides the greatest information gain (the largest decrease in gini impurity).
+
+Uniquely, this classifier will return probabilities of a label given some features.
+For example, for a set of features the classifier may be 10\% confident that describes label ``A", 70\% confident it describes label ``B", and 10\% confident it's ``C".
+This result would look like:
+\begin{verbatim}
+{
+  A: 0.1,
+  B: 0.7,
+  C: 0.1
+}
+\end{verbatim}
+
+It's also important to note that if a feature's value is numeric, it will try a $<$ comparison, but if it's not the classifier will try an $=$ comparison.
+
+\subsubsection{Usage}
+
+\begin{verbatim}
+ds = DecisionStump()
+ds.fit(X, y)
+ds.predict(Z)
+\end{verbatim}
+
+\subsubsection{Properties}
+
+\textit{DecisionStump}\texttt{.left} :: the probability distribution of the left side of the decision stump (dict).
+These are the probabilities assuming the value is on the left side, not cumulative.
+
+\textit{DecisionStump}\texttt{.right} :: the probability distribution of the right side of the decision stump (dict).
+These are the probabilities assuming the value is on the right side, not cumulative.
+
+\textit{DecisionStump}\texttt{.q} :: this is the \texttt{Question} that is asked by the classifier. It has members \texttt{feature} and \texttt{threshold} and a method \texttt{match} which takes an array of features and returns \texttt{True} if it satisfies that threshold or \texttt{False} otherwise.
+
+\subsubsection{Methods}
+
+\textit{DecisionStump}\texttt{.\_\_init\_\_()} :: Just creates the object. There is nothing needed to be passed in here.
+
+\textit{DecisionStump}\texttt{fit(X, y)} :: Finds the best question to ask to get the largest about of information gain. It will choose the feature and one of the values of that feature from \texttt{X}. \texttt{y} is the labelling for each row in \texttt{X}.
+
+\textit{DecisionStump}\texttt{predict(X)} :: Takes an array of features and returns the probability distribution for each one in a corresponding array.
+
 \section{Testing}
 
 Several manual tests were used in the Iris dataset. These tests included all

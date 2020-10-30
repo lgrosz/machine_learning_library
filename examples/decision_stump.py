@@ -8,14 +8,6 @@ import myml.util as util
 
 df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
 
-y = df.iloc[50:100, 2].values # versicolor, petal length
-X = np.array([[x] for x in df.iloc[50:100, 3].values]) # versicolor, petal length
-
-lr = LinearRegressor(0.01, 1000)
-lr.fit(X, y)
-
-util.plot_linear_regression(X, y, lr)
-
 y = df.iloc[50:150, 4].values # labels, versicolor-virginica
 X = np.array([x for x in df.iloc[50:150, 0:3].values]) # all features, decision stump will choose one of them
 

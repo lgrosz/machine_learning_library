@@ -108,10 +108,11 @@ that's because \texttt{w[0]} acts as a bias.
 
 \subsubsection{Description}
 
-The linear regressor uses fits assumed linear data with a line using a gradient
-descent algorithm. It starts assuming $\beta = [0, ..., 0]$ instead of random
-numbers. It then calulates partial derivatives of the error term $J$, for each
-independant variable in $X$. $J$ is defined as $\sum_{i=1}^{n}(y_i-(\mathbf{\beta}\cdot\mathbf{X^T_i}))^2$.
+The linear regressor fits data assumed to be linear in nature. It uses a gradient
+descent algorithm on the squared error between expected and actual output values. This
+can be done with any number of independant variables. It starts assuming the weights, $\beta = [0, ..., 0]$.
+It then calulates partial derivatives of the error term $J$, for each independant variable in $X$.
+$J$, the cost, is defined as the sum of the squared error for each sample point: $\sum_{i=1}^{n}(y_i-(\mathbf{\beta}\cdot\mathbf{X^T_i}))^2$.
 Using the partial derivatives and the error rate, a new $\beta$ is determined for
 the next epoch. This is repeated until the given number of epochs.
 

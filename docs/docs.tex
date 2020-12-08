@@ -2,7 +2,7 @@
 
 \usepackage[margin=1in]{geometry}
 
-\title{Program 1 - Perceptron} \author{Logan Grosz} \date{Last updated: \today}
+\title{Final Exam} \author{Logan Grosz} \date{Last updated: \today}
 \setcounter{tocdepth}{2}
 
 \setlength{\parindent}{0pt} \setlength{\parskip}{1em}
@@ -308,8 +308,6 @@ threshold.fit(X, y)
 
 \textit{Threshold}\texttt{.y} :: the labels passed into the fit function,
 corresponding to the features.
-right side of the decision stump (dict).  These are the probabilities assuming
-the value is on the right side, not cumulative.
 
 \subsubsection{Methods}
 
@@ -327,13 +325,18 @@ most likely label via a threshold (which is what the decision stump uses)
 
 \subsubsection{Description}
 
-The SVM uses 
+The SVM uses gradient descent to create a hyperplane that separates two labels.
+It does so by means of gradient descent. The gradient decscent will maximize the
+margin between the two labels (unlike the Perceptron). In order to further
+precision of further predictions.
 
 \subsubsection{Usage}
 
 \begin{verbatim}
-threshold = Support Vector Machine()
-threshold.fit(X, y)
+svm = SupportVectorMachine(0.01, 256)
+svm.fit(X, y)
+x = [5, 3, 9, ...]
+x_label = svm.predict(x)
 \end{verbatim}
 
 \subsubsection{Properties}
@@ -342,13 +345,11 @@ threshold.fit(X, y)
 
 \textit{Support Vector Machine}\texttt{.y} :: the labels passed into the fit function,
 corresponding to the features.
-right side of the decision stump (dict).  These are the probabilities assuming
-the value is on the right side, not cumulative.
 
 \subsubsection{Methods}
 
 \textit{SupportVectorMachine}\texttt{.\_\_init\_\_(rate, epochs)} :: Initialized
-the learning rate of the svm along with the max epochs it can use when training
+the learning rate of the svm along with the max epochs it can use when training.
 
 \textit{SupportVectorMachine}\texttt{fit(X, y)} :: Takes in a set of features
 and a set of corresponding labels. Supervised learning ensues via a stochastic
@@ -362,6 +363,53 @@ numbers that aren't one of those two.
 \textit{SupportVectorMachine}\texttt{predict(X)} :: Takes a single feature set
 and predicts the label. This will only return $1$ or $-1$, the client must
 remember what those labels mean when passed in.
+
+\subsection{Nearest Neighbor}
+
+\subsubsection{Description}
+
+The Nearest Neighbor learner uses $k$ nearest neighbors to classify or do
+regression on a set of features. It calculatest the distance to all points
+around a given query points. It then takes the $k$ nearest ones. If its a
+classification problem (labels are discrete) then it will take the mode of the
+$k$ nearest neighbors' labels. If its a regression problem (labels are
+continuous) it will take the mean of the $k$ nearest neighbors' labels.
+\subsubsection{Usage}
+
+\begin{verbatim}
+learner = NearestNeighbor(10)
+learner.fit(X, y)
+class_or_regression = learner.predict(np.array([4, 1.5]))
+\end{verbatim}
+
+\subsubsection{Properties}
+
+\textit{NearestNeighbor}\texttt{.k} :: number of neighbors to be looking at
+
+\textit{NearestNeighbor}\texttt{.X} :: the set of features passed into the fit
+function
+
+\textit{NearestNeighbor}\texttt{.d} :: the set of desired outputs for the
+features passed into the fit function
+
+\textit{NearestNeighbor}\texttt{.regression} :: boolean value saying whether or
+not the most recently fitted problem is a regression or classification problem
+
+\subsubsection{Methods}
+
+\textit{NearestNeighbor}\texttt{.\_\_init\_\_(k)} :: takes $k$, the number of
+neighbors to be looked at during prediction.
+
+\textit{NearestNeighbor}\texttt{fit(X, y)} :: This function simply sets the
+features and the labels for the predit function. Since there is no real learning
+going on, no weights, or learning artifacts need to persist. This function also
+looks at the type of the labels to determine if the label is numeric
+(continuous) or classifiable. Numeric values like ints and floats are considered
+to be numeric while all other values are classifiable.
+
+\textit{NearestNeighbor}\texttt{predict(X)} :: Takes feature set and finds the
+$k$ closest neighbors. If the labels are continuous, the mean of these features'
+labels is returned, otherwise the mode is returned as a label prediction.
 
 \end{document}
 

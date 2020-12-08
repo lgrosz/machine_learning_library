@@ -26,8 +26,8 @@ def stochastic_gradient_descent(features, labels, rate, epochs):
 
     for _ in range(1, epochs):
         for i, x in enumerate(features):
-            ascent = cost_gradient(weights, x, labels[i])
-            weights = weights - (rate * ascent)
+            cost = cost_gradient(weights, x, labels[i])
+            weights = weights - (rate * cost)
 
             # can put convergence threshold here or something to speed it up for
             # large number of epochs

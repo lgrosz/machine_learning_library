@@ -323,5 +323,45 @@ threadholding learner actually applies the most likely label.
 \textit{Threshold}\texttt{predict(X)} :: Takes a feature set and predicts its
 most likely label via a threshold (which is what the decision stump uses)
 
+\subsection{Support Vector Machine}
+
+\subsubsection{Description}
+
+The SVM uses 
+
+\subsubsection{Usage}
+
+\begin{verbatim}
+threshold = Support Vector Machine()
+threshold.fit(X, y)
+\end{verbatim}
+
+\subsubsection{Properties}
+
+\textit{SupportVectorMachine}\texttt{.X} :: the features passed into the fit function
+
+\textit{Support Vector Machine}\texttt{.y} :: the labels passed into the fit function,
+corresponding to the features.
+right side of the decision stump (dict).  These are the probabilities assuming
+the value is on the right side, not cumulative.
+
+\subsubsection{Methods}
+
+\textit{SupportVectorMachine}\texttt{.\_\_init\_\_(rate, epochs)} :: Initialized
+the learning rate of the svm along with the max epochs it can use when training
+
+\textit{SupportVectorMachine}\texttt{fit(X, y)} :: Takes in a set of features
+and a set of corresponding labels. Supervised learning ensues via a stochastic
+gradient descent algorithm. This algorithm calculates the cost gradient given a
+set of weights and then tries to minimize that cost by changing the weights. The
+algorithm, for each epoch specificed in init, will multiply the learning rate by
+the gradient cost to determine how much each weight should change. Note that the
+labels must be $-1$ and $1$. It is expected there is no more, no less, and no
+numbers that aren't one of those two.
+
+\textit{SupportVectorMachine}\texttt{predict(X)} :: Takes a single feature set
+and predicts the label. This will only return $1$ or $-1$, the client must
+remember what those labels mean when passed in.
+
 \end{document}
 

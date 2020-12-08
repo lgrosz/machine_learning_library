@@ -411,5 +411,22 @@ to be numeric while all other values are classifiable.
 $k$ closest neighbors. If the labels are continuous, the mean of these features'
 labels is returned, otherwise the mode is returned as a label prediction.
 
+\section{Examples}
+
+For examples see \texttt{examples} directory in the root directory of this project.
+
+\section{Known Bugs}
+
+\begin{itemize}
+    \item The logistic regressors training doesn't seem to work sometimes.. This
+      seems to happen when values of 0 and 1 are used as labels. I think this is
+      a problem with the linear regressors gradient descent algorithm.
+      Unforunately, I do not have time to fix this as I have to pick up my
+      daughter just woke up and my time is up. However, if I were to continue
+      this, I would reuse the gradient descent algorithm I used in the svm
+      because I think its much better put together than the one I made for the
+      linear regressor previously.
+\end{itemize}
+
 \end{document}
 

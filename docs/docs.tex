@@ -2,13 +2,10 @@
 
 \usepackage[margin=1in]{geometry}
 
-\title{Program 1 - Perceptron}
-\author{Logan Grosz}
-\date{Last updated: \today}
+\title{Program 1 - Perceptron} \author{Logan Grosz} \date{Last updated: \today}
 \setcounter{tocdepth}{2}
 
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt} \setlength{\parskip}{1em}
 
 \begin{document}
 
@@ -38,18 +35,22 @@ For examples see \texttt{examples/}
 
 \section{API Definitions}
 
-\subsection{myml.util}
+\subsection{util}
 
-\texttt{plot\_decision\_regions(X, y, classifier, resolution)} :: Will print a 2D scattery plot along with a
-line that separates two regions in accordance with the perceptron passed in.
+\texttt{plot\_decision\_regions(X, y, classifier, resolution)} :: Will print a
+2D scattery plot along with a line that separates two regions in accordance with
+the perceptron passed in.
 
-\texttt{plot\_decision\_regions\_3d(X, y, classifier, resolution)} :: Will print a 3D scattery plot along with a
-plane that separates two regions in accordance with the perceptron passed in.
+\texttt{plot\_decision\_regions\_3d(X, y, classifier, resolution)} :: Will print
+a 3D scattery plot along with a plane that separates two regions in accordance
+with the perceptron passed in.
 
 \texttt{plot\_linear\_regression} :: Will print a 2D scattery plot along with a
-plane that separates two regions in accordance with the perceptron passed in. For any higher dimensions it will not print. (For final portfolio, this will do a 3D plot as well)
+plane that separates two regions in accordance with the perceptron passed in.
+For any higher dimensions it will not print. (For final portfolio, this will do
+a 3D plot as well)
 
-\subsection{myml.Perceptron}
+\subsection{Perceptron}
 
 \subsubsection{Description}
 
@@ -64,10 +65,7 @@ These can be accessed through \textit{Perceptron}\texttt{.weights} and
 
 \subsubsection{Usage}
 
-\begin{verbatim}
-pn = Perceptron(rate, epochs)
-pn.fit(X, y)
-pn.predict(Z)
+\begin{verbatim} pn = Perceptron(rate, epochs) pn.fit(X, y) pn.predict(Z)
 \end{verbatim}
 
 \texttt{X} is a numpy.ndarray of shape ($samples$, $features$)
@@ -78,27 +76,31 @@ pn.predict(Z)
 
 \textit{Perceptron}\texttt{.rate} :: The learning rate of the classifier
 
-\textit{Perceptron}\texttt{.epochs} :: The number of epochs to run when fitting. These are not guaranteed to run if the classifier can be fit with no error at any point.
+\textit{Perceptron}\texttt{.epochs} :: The number of epochs to run when fitting.
+These are not guaranteed to run if the classifier can be fit with no error at
+any point.
 
-\textit{Perceptron}\texttt{.errors} :: Errors at each epoch during fitting. This is a numpy.ndarray with shape ($epochs$, $features$).
+\textit{Perceptron}\texttt{.errors} :: Errors at each epoch during fitting. This
+is a numpy.ndarray with shape ($epochs$, $features$).
 
-\textit{Perceptron}\texttt{.weights} :: Weights at each epoch during fitting. This is a numpy.ndarray with shape ($epochs$, $features$).
+\textit{Perceptron}\texttt{.weights} :: Weights at each epoch during fitting.
+This is a numpy.ndarray with shape ($epochs$, $features$).
 
 \subsubsection{Methods}
 
-\textit{Perceptron}\texttt{.\_\_init\_\_} :: The initilizer takes 2 arguments: the
-first is the learning rate, a float between 0 and 1. The second is the max
+\textit{Perceptron}\texttt{.\_\_init\_\_} :: The initilizer takes 2 arguments:
+the first is the learning rate, a float between 0 and 1. The second is the max
 number of iterations. These values can be accessed again with
 \textit{Perceptron}\texttt{.rate} and \textit{Perceptron}\texttt{.niter}.
 
-\textit{Perceptron}\texttt{.fit} :: Takes arguments \texttt{X} (numpy array
-with shape (\textit{nSamples}, \textit{nFeatures})) and \texttt{d} (also a
-numpy array with shape (\textit{nSamples})). This function applies the steps
-described above and ``validates" the errors and weights arrays.
+\textit{Perceptron}\texttt{.fit} :: Takes arguments \texttt{X} (numpy array with
+shape (\textit{nSamples}, \textit{nFeatures})) and \texttt{d} (also a numpy
+array with shape (\textit{nSamples})). This function applies the steps described
+above and ``validates" the errors and weights arrays.
 
 \textit{Perceptron}\texttt{.net\_input} :: Returns the weighted values of some
-given input \texttt{X} (of type numpy array with shape
-(\textit{nSamples, nFeatures})) as a numpy array with shape (\textit{nSamples}).
+given input \texttt{X} (of type numpy array with shape (\textit{nSamples,
+nFeatures})) as a numpy array with shape (\textit{nSamples}).
 
 \textit{Perceptron}\texttt{.predict} :: Returns labels (-1 or 1) for a given
 \texttt{X} of type numpy array with shape (\textit{nSamples, nFeatures}) as a
@@ -109,22 +111,74 @@ numpy array of shape (\textit{nSamples}).
 sample with shape (\textit{nFeatures}). Note, they're not the same size but
 that's because \texttt{w[0]} acts as a bias.
 
-\subsection{myml.LinearRegressor}
+\subsection{LinearRegressor}
 
 \subsubsection{Description}
 
-The linear regressor fits data assumed to be linear in nature. It uses a gradient
-descent algorithm on the squared error between expected and actual output values. This
-can be done with any number of independant variables. It starts assuming the weights, $\beta = [0, ..., 0]$.
-It then calulates partial derivatives of the error term $J$, for each independant variable in $X$.
-$J$, the cost, is defined as the sum of the squared error for each sample point: $\sum_{i=1}^{n}(y_i-(\mathbf{\beta}\cdot\mathbf{X^T_i}))^2$.
-Using the partial derivatives and the error rate, a new $\beta$ is determined for
-the next epoch. This is repeated until the given number of epochs.
+The linear regressor fits data assumed to be linear in nature. It uses a
+gradient descent algorithm on the squared error between expected and actual
+output values. This can be done with any number of independant variables. It
+starts assuming the weights, $\beta = [0, ..., 0]$.  It then calulates partial
+derivatives of the error term $J$, for each independant variable in $X$.  $J$,
+the cost, is defined as the sum of the squared error for each sample point:
+$\sum_{i=1}^{n}(y_i-(\mathbf{\beta}\cdot\mathbf{X^T_i}))^2$.  Using the partial
+derivatives and the error rate, a new $\beta$ is determined for the next epoch.
+This is repeated until the given number of epochs.
+
+\subsubsection{Usage}
+
+\begin{verbatim} lr = LinearRegressor(rate, epochs) lr.fit(X, y) lr.predict(Z)
+\end{verbatim}
+
+\texttt{X} is a numpy.ndarray of shape ($n$, $p$)
+
+\texttt{y} is a numpy.ndarray of shape ($n$)
+
+where $n$ is the number of samples and $p$ is the number of independant
+variables
+
+\subsubsection{Properties}
+
+Note: Attributes are meant to be read-only. Modify them at your own risk. I have
+not chosen to enforce this since anyone can break it if they wanted anyways.
+
+\textit{LinearRegressor}\texttt{.rate} :: learning rate
+
+\textit{LinearRegressor}\texttt{.epochs} :: epochs
+
+\textit{LinearRegressor}\texttt{.w} :: matrix of values of $\beta$. This is a
+numpy.ndarray of shape ($epochs$, $p$).
+
+\textit{LinearRegressor}\texttt{.errors} :: matrix of values of $\epsilon$.
+$\epsilon$ is the error between each predicted $y_i$ and its real value, $d_i$,
+such that $\epsilon + y_i = d_i$
+
+\subsubsection{Methods}
+
+\textit{LinearRegressor}\texttt{.\_\_init\_\_(rate, epochs)} :: Simply sets the
+learning rate and attributes of a linear regressor so it's ready to be fitted.
+
+\textit{LinearRegressor}\texttt{.fit(X, y)} :: Takes $X$ (numpy.ndarray of shape
+($n$, $p$)) and $y$ (numpy.ndarray of shape ($n$)). $n$ is the number of samples
+while $p$ is the number of independant variables.
+
+\textit{LinearRegressor}\texttt{.predict(X)} :: takes a matrix of $\mathbf{x}$s,
+and spits out their predicted $\textbf{y}$s using the $\beta$ of the last epoch.
+Note that the Linear Regressor must be fitted first!
+
+\subsection{Logistic Regressor}
+
+\subsubsection{Description}
+
+The logistic regressor uses the linear regressor but instead of providing a
+regressed value for the predict result, it provides a probability of being class
+A or class B. It does this by applying the logistic function
+$\frac{1}{1+e^{-x}}$ where $x$ is the linear regression result.
 
 \subsubsection{Usage}
 
 \begin{verbatim}
-lr = LinearRegressor(rate, epochs)
+lr = LogisticRegressor(rate, epochs)
 lr.fit(X, y)
 lr.predict(Z)
 \end{verbatim}
@@ -133,52 +187,67 @@ lr.predict(Z)
 
 \texttt{y} is a numpy.ndarray of shape ($n$)
 
-where $n$ is the number of samples and $p$ is the number of independant variables
+where $n$ is the number of samples and $p$ is the number of independant
+variables
 
 \subsubsection{Properties}
 
-Note: Attributes are meant to be read-only. Modify them at your own risk. I have not chosen to enforce this since anyone can break it if they wanted anyways.
+Note: Attributes are meant to be read-only. Modify them at your own risk. I have
+not chosen to enforce this since anyone can break it if they wanted anyways.
 
-\textit{LinearRegressor}\texttt{.rate} :: learning rate
+\textit{LogisticRegressor}\texttt{.rate} :: learning rate
 
-\textit{LinearRegressor}\texttt{.epochs} :: epochs
+\textit{LogisticRegressor}\texttt{.epochs} :: epochs
 
-\textit{LinearRegressor}\texttt{.w} :: matrix of values of $\beta$. This is a numpy.ndarray of shape ($epochs$, $p$).
+\textit{LogisticRegressor}\texttt{.w} :: matrix of values of $\beta$. This is a
+numpy.ndarray of shape ($epochs$, $p$).
 
-\textit{LinearRegressor}\texttt{.errors} :: matrix of values of $\epsilon$. $\epsilon$ is the error between each predicted $y_i$ and its real value, $d_i$, such that $\epsilon + y_i = d_i$
+\textit{LogisticRegressor}\texttt{.errors} :: matrix of values of $\epsilon$.
+$\epsilon$ is the error between each predicted $y_i$ and its real value, $d_i$,
+such that $\epsilon + y_i = d_i$
 
 \subsubsection{Methods}
 
-\textit{LinearRegressor}\texttt{.\_\_init\_\_(rate, epochs)} :: Simply sets the learning rate and attributes of a linear regressor so it's ready to be fitted.
+\textit{LogisticRegressor}\texttt{.\_\_init\_\_(rate, epochs)} :: Simply sets the
+learning rate and attributes of a linear regressor so it's ready to be fitted.
 
-\textit{LinearRegressor}\texttt{.fit(X, y)} :: Takes $X$ (numpy.ndarray of shape ($n$, $p$)) and $y$ (numpy.ndarray of shape ($n$)). $n$ is the number of samples while $p$ is the number of independant variables.
+\textit{LogisticRegressor}\texttt{.fit(X, y)} :: Takes $X$ (numpy.ndarray of shape
+($n$, $p$)) and $y$ (numpy.ndarray of shape ($n$)). $n$ is the number of samples
+while $p$ is the number of independant variables.
 
-\textit{LinearRegressor}\texttt{.predict(X)} :: takes a matrix of $\mathbf{x}$s, and spits out their predicted $\textbf{y}$s using the $\beta$ of the last epoch. Note that the Linear Regressor must be fitted first!
+\textit{LogisticRegressor}\texttt{.predict(X)} :: takes a matrix of $\mathbf{x}$s,
+and spits out their predicted $\textbf{y}$s using the $\beta$ of the last epoch.
+Note that the learner must be fitted first.
 
 \subsection{Decision Stump}
 
 \subsubsection{Description}
 
-The decision stump is a decision tree which only has a depth of 1.
-It will take in some samples, each with $n$ features and a label.
-The classifier will determine which feature and value of said feature provides a threshold which gives the largest confidence gain is classifying the given samples.
-While the samples can have as many labels as wished for, if this is being used as a standalone classifier a binary labeling is best.
+The decision stump is a decision tree which only has a depth of 1.  It will take
+in some samples, each with $n$ features and a label.  The classifier will
+determine which feature and value of said feature provides a threshold which
+gives the largest confidence gain is classifying the given samples.  While the
+samples can have as many labels as wished for, if this is being used as a
+standalone classifier a binary labeling is best.
 
 The given dataset comes with an inherit impurity (measured by gini impurity).
-The classifier will go through every unique value for each feature given in $X$, and determine the feature and value that provides the greatest information gain (the largest decrease in gini impurity).
+The classifier will go through every unique value for each feature given in $X$,
+and determine the feature and value that provides the greatest information gain
+(the largest decrease in gini impurity).
 
-Uniquely, this classifier will return probabilities of a label given some features.
-For example, for a set of features the classifier may be 10\% confident that describes label ``A", 70\% confident it describes label ``B", and 10\% confident it's ``C".
-This result would look like:
+Uniquely, this classifier will return probabilities of a label given some
+features.  For example, for a set of features the classifier may be 10\%
+confident that describes label ``A", 70\% confident it describes label ``B", and
+10\% confident it's ``C".  This result would look like:
 \begin{verbatim}
-{
-  A: 0.1,
+{ A: 0.1,
   B: 0.7,
   C: 0.1
 }
 \end{verbatim}
 
-It's also important to note that if a feature's value is numeric, it will try a $<$ comparison, but if it's not the classifier will try an $=$ comparison.
+It's also important to note that if a feature's value is numeric, it will try a
+$<$ comparison, but if it's not the classifier will try an $=$ comparison.
 
 \subsubsection{Usage}
 
@@ -190,34 +259,69 @@ ds.predict(Z)
 
 \subsubsection{Properties}
 
-\textit{DecisionStump}\texttt{.left} :: the probability distribution of the left side of the decision stump (dict).
-These are the probabilities assuming the value is on the left side, not cumulative.
+\textit{DecisionStump}\texttt{.left} :: the probability distribution of the left
+side of the decision stump (dict).  These are the probabilities assuming the
+value is on the left side, not cumulative.
 
-\textit{DecisionStump}\texttt{.right} :: the probability distribution of the right side of the decision stump (dict).
-These are the probabilities assuming the value is on the right side, not cumulative.
+\textit{DecisionStump}\texttt{.right} :: the probability distribution of the
+right side of the decision stump (dict).  These are the probabilities assuming
+the value is on the right side, not cumulative.
 
-\textit{DecisionStump}\texttt{.q} :: this is the \texttt{Question} that is asked by the classifier. It has members \texttt{feature} and \texttt{threshold} and a method \texttt{match} which takes an array of features and returns \texttt{True} if it satisfies that threshold or \texttt{False} otherwise.
+\textit{DecisionStump}\texttt{.q} :: this is the \texttt{Question} that is asked
+by the classifier. It has members \texttt{feature} and \texttt{threshold} and a
+method \texttt{match} which takes an array of features and returns \texttt{True}
+if it satisfies that threshold or \texttt{False} otherwise.
 
 \subsubsection{Methods}
 
-\textit{DecisionStump}\texttt{.\_\_init\_\_()} :: Just creates the object. There is nothing needed to be passed in here.
+\textit{DecisionStump}\texttt{.\_\_init\_\_()} :: Just creates the object. There
+is nothing needed to be passed in here.
 
-\textit{DecisionStump}\texttt{fit(X, y)} :: Finds the best question to ask to get the largest about of information gain. It will choose the feature and one of the values of that feature from \texttt{X}. \texttt{y} is the labelling for each row in \texttt{X}.
+\textit{DecisionStump}\texttt{fit(X, y)} :: Finds the best question to ask to
+get the largest about of information gain. It will choose the feature and one of
+the values of that feature from \texttt{X}. \texttt{y} is the labelling for each
+row in \texttt{X}.
 
-\textit{DecisionStump}\texttt{predict(X)} :: Takes an array of features and returns the probability distribution for each one in a corresponding array.
+\textit{DecisionStump}\texttt{predict(X)} :: Takes an array of features and
+returns the probability distribution for each one in a corresponding array.
 
-\section{Testing}
+\subsection{Threshold}
 
-Several manual tests were used in the Iris dataset. These tests included all
-combinations of flowers with varying features. Some converged and some did not.
-I also did some 3 feature learning, to test that functionality. Although there
-much more manual tests, two can be found in the example \texttt{prog.py} (commit
-tagged prog1). The first is a 2 feature test which takes almost 800 iterations
-to converge while the second is a 3 feature test which converges quickly. Both
-of these use the first two flower species as they were the easiest to get to
-converge.
+\subsubsection{Description}
 
-This needs to be fleshed out with runnable tests for the final portoflio using pytest.
+The Threshold leaner will use a decision stump to generate the best threshold to
+classify two labels given a set of features. The size of $x$ passed into predict
+should be the same size of each feature to ensure correct prediction. Unlike the
+deceision stump, predict will return the most likely label rather than the
+probability the features correspond to a given label.
+
+\subsubsection{Usage}
+
+\begin{verbatim}
+threshold = Threshold()
+threshold.fit(X, y)
+\end{verbatim}
+
+\subsubsection{Properties}
+
+\textit{Threshold}\texttt{.X} :: the features passed into the fit function
+
+\textit{Threshold}\texttt{.y} :: the labels passed into the fit function,
+corresponding to the features.
+right side of the decision stump (dict).  These are the probabilities assuming
+the value is on the right side, not cumulative.
+
+\subsubsection{Methods}
+
+\textit{Threshold}\texttt{.\_\_init\_\_()} :: Just creates the object. There
+is nothing needed to be passed in here.
+
+\textit{Threshold}\texttt{fit(X, y)} :: Uses the decision stump to create a fit
+for the threshold. The decision stump actually creates the threshold, but the
+threadholding learner actually applies the most likely label.
+
+\textit{Threshold}\texttt{predict(X)} :: Takes a feature set and predicts its
+most likely label via a threshold (which is what the decision stump uses)
 
 \end{document}
 

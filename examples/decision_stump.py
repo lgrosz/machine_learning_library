@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plot
 
-from myml import LinearRegressor
 from myml import DecisionStump
 import myml.util as util
 

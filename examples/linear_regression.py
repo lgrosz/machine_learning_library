@@ -11,6 +11,9 @@ df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris
 y = df.iloc[50:100, 2].values # versicolor, petal length
 X = np.array([[x] for x in df.iloc[50:100, 3].values]) # versicolor, petal length
 
+print(y)
+print(X)
+
 lr = LinearRegressor(0.01, 1000)
 lr.fit(X, y)
 

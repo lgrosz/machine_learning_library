@@ -37,8 +37,8 @@ class DecisionStump:
 
         self.q = best_question
 
-    def predict(self, X):
-        return np.array([self.left if self.q.match(x) else self.right for x in X])
+    def predict(self, x):
+        return self.left if self.q.match(x) else self.right
 
 class Question:
     def __init__(self, feature, threshold):

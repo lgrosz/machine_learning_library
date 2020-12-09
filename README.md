@@ -1,3 +1,7 @@
+# Documentation
+
+Please see docs/docs.pdf
+
 # Previous versions
 
 Check tags for the state of the library during different submission
